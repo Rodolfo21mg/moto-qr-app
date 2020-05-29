@@ -1,5 +1,7 @@
 {
   "name": "moto-qr-App",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

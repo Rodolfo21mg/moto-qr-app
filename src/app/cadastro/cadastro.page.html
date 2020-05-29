@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+    <div style="text-align: center;">
+      CADASTRO - MOTO QR
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container" style="margin: 2%;" class="form-control login" padding>
+    <form>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+        <ion-item>
+          <ion-label position="stacked">Nome:</ion-label>
+          <ion-input id="nome" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">CPF:</ion-label>
+          <ion-input id="cpf" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Endereço:</ion-label>
+          <ion-input id="endereco" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Idade:</ion-label>
+          <ion-input id="idade" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Naturalidade:</ion-label>
+          <ion-input id="naturalidade" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Tipo Sanguíneo:</ion-label>
+          <ion-select id="sangue" placeholder="Escolha o Convénio">
+            <ion-select-option value="A+">A+</ion-select-option>
+            <ion-select-option value="A-">A-</ion-select-option>
+            <ion-select-option value="B+">B+</ion-select-option>
+            <ion-select-option value="B-">B-</ion-select-option>
+            <ion-select-option value="AB+">AB+</ion-select-option>
+            <ion-select-option value="AB-">AB-</ion-select-option>
+            <ion-select-option value="O+">O+</ion-select-option>
+            <ion-select-option value="O-">O-</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Convénio Médico:</ion-label>
+          <ion-select id="conveniomed" placeholder="Escolha o Convénio">
+            <ion-select-option value="Unimed">Unimed</ion-select-option>
+            <ion-select-option value="SUS">SUS</ion-select-option>
+            <ion-select-option value="Golden Cross">Golden Cross</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Observações Médicas:</ion-label>
+          <ion-input id="obsmed" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Nome do Contato 1:</ion-label>
+          <ion-input id="nomecont1" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Telefone do Contato 1:</ion-label>
+          <ion-input id="telcont1" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Nome do Contato 2:</ion-label>
+          <ion-input id="nomecont2" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Telefone do Contato 2:</ion-label>
+          <ion-input id="telcont2" required type="text" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Email:</ion-label>
+          <ion-input id="email" required type="email" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Senha:</ion-label>
+          <ion-input id="senha" required type="password" ></ion-input>
+        </ion-item>
+
+
+      </ion-list>
+
+      <div class="ion-padding">
+        <ion-button style="margin: 1px;" expand="block" type="submit" class="ion-no-margin" (click)="store()">Criar Conta</ion-button>
+        <ion-button expand="block" color="danger" type="submit" class="ion-no-margin" (click)="goBack()">Voltar</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

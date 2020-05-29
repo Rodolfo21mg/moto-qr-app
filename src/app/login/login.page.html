@@ -1,0 +1,25 @@
+<ion-content>
+    <div id="container" class="form-control login" padding>
+      <img src="/assets/logo.PNG" alt="20px" height="130px">
+      <img src="/assets/icon/logo.PNG" alt="10px" height="90px">
+      <ion-item>
+        <ion-input id="usuario" type="text" placeholder="Usuário ou Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input id="senha" type="password" placeholder="Senha"></ion-input>
+      </ion-item>
+      <div style="margin: 30px;">
+        <ion-button (click)="validateLogin()" size="medium" color="light" type="submit" expand="block">Acessar</ion-button>
+        <ion-button (click)="cadastro()" size="medium" type="submit" expand="block">Criar Conta</ion-button>
+      </div>
+
+      <div style="margin: 50px;">
+          <ion-button  size="medium" color="light" type="submit" expand="block">ESCANEAR QR CODE</ion-button>
+          <div style="margin: 50px;">
+            <label for="">Logar com:</label>
+            <img style="margin: 10px" src="/assets/facebook.png" alt="10px" height="30px">
+            <img style="margin: 10px" src="/assets/google.png" alt="10px" height="30px">
+          </div>
+      </div>
+    </div>
+  </ion-content>

@@ -1,17 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
-    </ion-title>
+    <div style="text-align: center;">
+      QRCODE - MOTO QR 
+    </div>
+  </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div style="position: middle;">
+  <div id="container" style="margin: 2%;" class="form-control login" padding>  
+    <div style="text-align:center;margin:10%;">
+      <img src="/assets/slides/3.png" alt="40px" height="280px">
+    </div>
+    
+    <div class="row" style="text-align:center">
+    <ion-button  size="small" color="danger" type="submit">Enviar via Email</ion-button>
+    <ion-button  size="small" color="primary" type="submit">Download</ion-button>
+    </div>
+  </div>
+</div>
 </ion-content>

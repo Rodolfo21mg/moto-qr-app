@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,16 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  sendPostRequest() {
+
+    this.http.get('http://localhost/api-moto-qr/public/api/index').subscribe((response) => {
+    console.log(response);
+    });
+  
+  }
 
 }
+
+

@@ -1,53 +1,98 @@
 import { Component , OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { LoginPage } from '../login/login.page';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
+
 export class Tab1Page { 
 
   constructor(public httpClient: HttpClient,
     public nvctrl: NavController, 
-    public router: Router) {
-
+    public router: Router, public alertController: AlertController) {
+      this.getUsuario(1);
   }
 
-  getUsuario(){
+  async alert(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Atenção!',
+      message: 'Usuário editado com sucesso!',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
-    this.httpClient.get("http://localhost/api-moto-qr/public/api/getUsuario/1")
+  getUsuario(usuario){
+  
+    this.httpClient.get('http://motoqr-com-br.umbler.net/public/api/getUsuario/'+usuario+'')
     .subscribe(data => {
-      //(<HTMLInputElement>document.getElementById("nome")).value = data[0].nome ;
-      //(<HTMLInputElement>document.getElementById("cpf")).value = data[0].cpf;
-      //(<HTMLInputElement>document.getElementById("endereco")).value = data[0].endereco;
-      //(<HTMLInputElement>document.getElementById("idade")).value = data[0].idade;
-      //(<HTMLInputElement>document.getElementById("naturalidade")).value = data[0].naturalidade;
-      //(<HTMLInputElement>document.getElementById("email")).value = data[0].email;
-      //(<HTMLInputElement>document.getElementById("sangue")).value = data[0].sangue;
-      //(<HTMLInputElement>document.getElementById("convenio")).value = data[0].conveniomed;
-      //(<HTMLInputElement>document.getElementById("obsmed")).value = data[0].obsmed;
-      //(<HTMLInputElement>document.getElementById("cont1")).value = data[0].nomecont1;
-      //(<HTMLInputElement>document.getElementById("cont2")).value = data[0].nomecont1;
-
-      (<HTMLInputElement>document.getElementById("nome")).value = 'José Augusto Nascimento' ;
-      (<HTMLInputElement>document.getElementById("cpf")).value = '123.456.897-21';
-      (<HTMLInputElement>document.getElementById("endereco")).value = 'Rua Um, 250 - Centro - Belo Horizonte';
-      (<HTMLInputElement>document.getElementById("idade")).value = '25';
-      (<HTMLInputElement>document.getElementById("naturalidade")).value = 'Sete Lagoas - MG';
-      (<HTMLInputElement>document.getElementById("email")).value = 'jose.8181@aluno.una.br';
-      (<HTMLInputElement>document.getElementById("sangue")).value = 'AB+';
-      (<HTMLInputElement>document.getElementById("convenio")).value = 'SUS';
-      (<HTMLInputElement>document.getElementById("obsmed")).value = 'Não tenho nenhuma doença crônica. Não posso tomar cloroquina pois tenho reação alérgica.';
-      (<HTMLInputElement>document.getElementById("cont1")).value = 'Maria - 31 99658-7856';
-      (<HTMLInputElement>document.getElementById("cont2")).value = 'José - 31 99658-7896';
-     }, error => {
+      if(document.getElementById("id") != null &&
+      document.getElementById("nome") != null &&
+      document.getElementById("cpf") != null &&
+      document.getElementById("endereco") != null &&
+      document.getElementById("idade") != null &&
+      document.getElementById("naturalidade") != null &&
+      document.getElementById("email") != null &&
+      document.getElementById("sangue") != null &&
+      document.getElementById("convenio") != null &&
+      document.getElementById("obsmed") != null &&
+      document.getElementById("cont1") != null &&
+      document.getElementById("cont2") != null) {
+      (<HTMLInputElement>document.getElementById("id")).value = data.id;
+      (<HTMLInputElement>document.getElementById("nome")).value = data.nome ;
+      (<HTMLInputElement>document.getElementById("cpf")).value = data.cpf;
+      (<HTMLInputElement>document.getElementById("endereco")).value = data.endereco;
+      (<HTMLInputElement>document.getElementById("idade")).value = data.idade;
+      (<HTMLInputElement>document.getElementById("naturalidade")).value = data.naturalidade;
+      (<HTMLInputElement>document.getElementById("email")).value = data.email;
+      (<HTMLInputElement>document.getElementById("sangue")).value = data.sangue;
+      (<HTMLInputElement>document.getElementById("convenio")).value = data.conveniomed;
+      (<HTMLInputElement>document.getElementById("obsmed")).value = data.obsmed;
+      (<HTMLInputElement>document.getElementById("cont1")).value = data.nomecont1 + ' - ' + data.telcont1;
+      (<HTMLInputElement>document.getElementById("cont2")).value = data.nomecont2 + ' - ' + data.telcont2; 
+      }    
+    }, error => {
       console.log(error);
     });
-  
+  }
+
+  editUsuario(){
+    if(document.getElementById("id") != null &&
+    document.getElementById("nome") != null &&
+    document.getElementById("cpf") != null &&
+    document.getElementById("endereco") != null &&
+    document.getElementById("idade") != null &&
+    document.getElementById("naturalidade") != null &&
+    document.getElementById("email") != null &&
+    document.getElementById("sangue") != null &&
+    document.getElementById("convenio") != null &&
+    document.getElementById("obsmed") != null &&
+    document.getElementById("cont1") != null &&
+    document.getElementById("cont2") != null ){
+    var postData = {
+      id: (<HTMLInputElement>document.getElementById("id")).value,
+      nome: (<HTMLInputElement>document.getElementById("nome")).value,
+      cpf: (<HTMLInputElement>document.getElementById("cpf")).value,
+      endereco: (<HTMLInputElement>document.getElementById("endereco")).value,
+      idade: (<HTMLInputElement>document.getElementById("idade")).value,
+      naturalidade: (<HTMLInputElement>document.getElementById("naturalidade")).value,
+      sangue: (<HTMLInputElement>document.getElementById("sangue")).value,
+      conveniomed: (<HTMLInputElement>document.getElementById("convenio")).value,
+      obsmed: (<HTMLInputElement>document.getElementById("obsmed")).value,
+    };
+    console.log(postData);
+     this.httpClient.post("http://motoqr-com-br.umbler.net/public/api/edit", postData)
+     .subscribe(data => {
+      }, error => {
+        this.alert();
+     }); 
+    }
   }
   
   goBack(){

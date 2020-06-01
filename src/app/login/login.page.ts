@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public httpClient: HttpClient,public nvctrl: NavController, public router: Router) { }
+  constructor(public httpClient: HttpClient,public nvctrl: NavController, public router: Router
+    ,public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -19,23 +21,29 @@ export class LoginPage implements OnInit {
     return this.router.navigateByUrl('/cadastro');
   }
 
+  async alert(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Atenção!',
+      message: 'Usuário ou Senha inválidos!',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
   validateLogin() {
 
     var postData = {
        email: (<HTMLInputElement>document.getElementById("usuario")).value,
        senha: (<HTMLInputElement>document.getElementById("senha")).value,
     };
-
-    return this.router.navigateByUrl('/tabs/tab1');
-
-    /*
-      this.httpClient.post("http://localhost/api-moto-qr/public/api/login", postData)
+      this.httpClient.post("http://motoqr-com-br.umbler.net/public/api/login", postData)
       .subscribe(data => {
-          return this.router.navigateByUrl('/tabs');
+          this.router.navigateByUrl('/');
        }, error => {
-        return this.router.navigateByUrl('/tabs');
+          this.alert();
       });
-      */
+    
   }
 
 }

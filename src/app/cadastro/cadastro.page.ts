@@ -3,6 +3,8 @@ import { HttpClient} from '@angular/common/http';
 import { LoginPage } from '../login/login.page';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+ 
 
 @Component({
   selector: 'app-cadastro',
@@ -11,13 +13,24 @@ import { Router } from '@angular/router';
 })
 export class CadastroPage implements OnInit {
 
-  constructor(public httpClient: HttpClient,public nvctrl: NavController, public router: Router) { }
+  constructor(public httpClient: HttpClient,public nvctrl: NavController, public router: Router
+    ,public alertController: AlertController) { }
 
   ngOnInit() {
   }
 
-  goBack(){
+ goBack(){
     return this.router.navigateByUrl('/login');
+  }
+
+  async alert(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Atenção!',
+      message: 'Usuário Cadastrado com Sucesso!',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   store() {
@@ -39,10 +52,11 @@ export class CadastroPage implements OnInit {
        senha: (<HTMLInputElement>document.getElementById("senha")).value,
     };
 
-      this.httpClient.post("http://localhost/api-moto-qr/public/api/store", postData)
+      this.httpClient.post("http://motoqr-com-br.umbler.net/public/api/store", postData)
       .subscribe(data => {
         console.log(data);
        }, error => {
+        this.alert();
         return this.router.navigateByUrl('/login');
       });
   }

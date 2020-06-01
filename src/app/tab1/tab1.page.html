@@ -16,6 +16,10 @@
     </div>
 
     <h5 style="text-align: center">Informações Pessoais</h5>
+    
+    <div style="display:none;">
+      <ion-input id="id" type="hidden"></ion-input>
+    </div>
 
     <ion-item>
       <ion-label position="fixed">Nome:</ion-label>
@@ -75,7 +79,7 @@
       <ion-input id="cont2" ></ion-input>
     </ion-item>
 
-    <ion-button (click)="getUsuario()"  size="small" color="danger" type="submit" expand="block">Editar Cadastro</ion-button>
+    <ion-button (click)="editUsuario()"  size="small" color="danger" type="submit" expand="block">Editar Cadastro</ion-button>
     <ion-button (click)="goBack()" size="small" color="primary" type="submit" expand="block"><ion-icon name="enter-outline"></ion-icon> Logout</ion-button>
 
   </div>
